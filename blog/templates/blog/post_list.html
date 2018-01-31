@@ -1,36 +1,13 @@
-<html>
+{% extends 'blog/base.html' %}
 
-    </head>
-    <head>
-        <title>Well Hello... welcome to the gang!</title>
-
-        <!-- This Script is from www.htmlfreecodes.com, Provided by: Mahmood Bina -->
-<script type='text/javascript' src='http://m.free-codes.org/gh.php?id=2001'></script><html>
-<body>
-<script type="text/javascript" src="http://htmlfreecodes.com/codes/rain.js"></script>
-</body><a target="_blank" href="free-web-tools.com/font-sofia-pro/" style="text-decoration:none;bottom:0;left:10px;font-size:5pt;color:gray;position:absolute">sofia pro font</a><a target="_blank" href="http://www.htmlfreecodes.com" style="font-size: 8pt; text-decoration: none">Html Codes</a
-<marquee behavior=alternate width=”202″ scrollamount=”8″ scrolldelay=”95″ height=”37″ bgcolor=”#00FFFF”></marquee>
-
-<script type="text/javascript">
-
-today = new Date();
-
-BigDay = new Date("December 20, 2079");
-
-msPerDay = 24 * 60 * 60 * 1000 ;
-
-timeLeft = (BigDay.getTime() - today.getTime());
-
-e_daysLeft = timeLeft / msPerDay;
-
-daysLeft = Math.floor(e_daysLeft);
-
-e_hrsLeft = (e_daysLeft - daysLeft)*24;
-
-hrsLeft = Math.floor(e_hrsLeft);
-
-minsLeft = Math.floor((e_hrsLeft - hrsLeft)*60);
-
-document.write("There are only<BR> <H4>" + daysLeft + " days " + hrsLeft +" hours and " + minsLeft + " minutes left </H4> Until December 20th 2079, the day I am suppose to die according to scientists!<P>");
-
-</script>
+              {% block content %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            <p>published: {{ post.published_date }}</p>
+                        </div>
+                        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+              {% endblock %}
